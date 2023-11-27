@@ -1,61 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home | PARK.io</title>
-  <style>
-    * {
-  margin: 0;
-  padding: 0;
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-  box-sizing: border-box;
-}
-
-.container {
-  width: 100%;
-  max-height: fit-content;
-  background-color: #3d0865;
-  background-size: contain;
-  background-position: center;
-  padding: 10px 8%;
-}
-
-nav {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 0;
-}
-
-.logo {
-  width: 80px; /* Adjust the width of the logo */
-  height: auto; /* Maintain aspect ratio */
-  display: block;
-  margin: 0; /* Adjust margins as needed */
-  border-radius: 50%;
-  border: 2px solid #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-}
-
-nav ul {
-  list-style: none;
-  width: 100%;
-  text-align: right;
-}
-
-nav ul li {
-  display: inline-block;
-  margin: 10px 20px;
-}
-
-nav ul li a {
-  color: rgb(200, 200, 200);
-  text-decoration: none;
-}
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | PARK.io</title>
+    <style>
+      *{
+      margin:0;
+      padding:0;
+      font-family: 'Trebuchet MS', sans-serif;
+      font-size:12px;
+      box-sizing: border-box;
+    }
+    .container{
+      width: 100%;
+      max-height: fit-content;
+      background-color:black;
+      background-size: contain;
+      background-position: center;
+      padding: 10px 8%;
+    }
+    nav{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+    }
+    .logo{
+      width: 150px;
+    }
+    nav ul{
+      list-style: none;
+      width: 100%;
+      text-align: right;
+    }
+    nav ul li{
+      display: inline-block;
+      margin: 10px 20px;
+    }
+    nav ul li a{
+      color:rgb(200,200,200);
+      text-decoration: none;
+    }
     .btnL{
       display: flex;
       align-items: center;
@@ -85,29 +72,6 @@ nav ul li a {
       color:white;
       text-decoration: none;
       font-weight: bold;
-    }
-    .btnT{
-      position: relative;
-      left:50%;
-      top:50%;
-      transform: translate(-50%,-50%);
-      align-items: center;
-      padding-top: 200px;
-      padding-bottom: 200px;
-      padding-left: 100px;
-      padding-right: 100px;
-      border:0;
-      outline: 0;
-      background-color:transparent;
-      cursor: pointer;
-    }
-    .btnT a{
-      color:white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 36px;
-      text-shadow: 1px 1px 2px black, 0 0 25px #9217f0, 0 0 5px purple;
-      color: white;
     }
     footer{
       background-color:#3d0865;
@@ -143,30 +107,6 @@ nav ul li a {
     .page{
       min-height: fit-content;
     }
-    h4{
-      font-size: 70px;
-      padding-left: 50px;
-      padding-top: 150px;
-    }
-    .ptext{
-      font-size: 28px;
-      padding-left: 50px;
-      padding-top: 30px;
-    }
-    .plist{
-      padding-top: 10px;
-      padding-left: 65px;
-    }
-    .ppoint{
-      font-size: 20px;
-    }
-    .service{
-      font-size: 50px;
-      padding-top: 150px;
-      text-align: center;
-      font-weight: 700;
-    }
-
     .loginContainer{
         position: relative;
         left:50%;
@@ -259,56 +199,44 @@ nav ul li a {
         font-weight: 700;
         text-decoration: none;
     }
-    
   </style>
 </head>
 <body>
   <header>
     <div class="container">
       <nav>
-        <img src="{{ url_for('static', filename='images/logox.png') }}" alt="Logo">
-
-        
+        <img  src="logo.png" class="logo">
         <ul>
-          <li><a href="http://127.0.0.1:5000/booking">BOOKING</a></li>
+          <li><a href=http://127.0.0.1:5500/env/templates/home.html>HOME</a></li>
+          <li><a href="http://127.0.0.1:5500/env/templates/booking.html">BOOKING</a></li>
         </ul>
-        <button class="btnL"><a href="http://127.0.0.1:5000/login">LOGIN</a></button>
-        <button class="btnR"><a href="http://127.0.0.1:5000/register">REGISTER</a></button>
+        <!-- <button class="btnL"><a href="http://127.0.0.1:5000/login">LOGIN</a></button>
+        <button class="btnR"><a href="http://127.0.0.1:5000/register">REGISTER</a></button> -->
       </nav>
     </div>
-  </header>
-
-
-</div>
-</header>  
-<div class="page">
-  <div class="loginContainer">
-    <h1>Sign in <br>to your account</h1>
-    <form action="http://127.0.0.1:5000/login" method="post">
-      <div class="text_field">
-        <input type="text" id="username" name="username" required>
-        <span></span>
-        <label>Username</label>
-      </div>
-      <div class="text_field">
-          <input type="password" id="password" name="password"required>
+  </header>  
+  <div class="page">
+    <div class="loginContainer">
+      <h1>Sign in <br>to your account</h1>
+      <form method="post">
+        <div class="text_field">
+          <input type="text" required>
           <span></span>
-          <label>Password</label>
+          <label>Username</label>
         </div>
-      <input type="submit" value="LOGIN" href="http://127.0.0.1:5000/home.html">
-      <div class="signup">
-          Not a member? <a href="http://127.0.0.1:5000/register.html">Sign up</a>
-      </div>
-    </form>      
+        <div class="text_field">
+            <input type="password" required>
+            <span></span>
+            <label>Password</label>
+          </div>
+        <input type="submit" value="LOGIN">
+        <div class="signup">
+            Not a member? <a href="http://127.0.0.1:5500/env/templates/register.html">Sign up</a>
+        </div>
+      </form>      
+    </div>
   </div>
-</div>
-
-
- 
-
   
-    
-
   <footer>
     <div class="footContainer">
       <div class="footContent">
