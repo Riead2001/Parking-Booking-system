@@ -1,0 +1,86 @@
+from flask import Flask, render_template, request, redirect, url_for, session
+from flask_sqlalchemy import SQLAlchemy
+import pymysql
+import logging
+
+app = Flask(__name__)
+logging.basicConfig(level=logging.DEBUG)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root@localhost/parkbase'
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    fullname= db.Column(db.String, primary_key=True)
+    email= db.Column(db.String(40), unique=True,nullable=False)
+    user_name = db.Column(db.String(20), unique=True,nullable=False)
+    password= db.Column(db.String(20), primary_key=True, nullable=False)
+    address= db.Column(db.String(80), unique=False, nullable=True)
+    phn = db.Column(db.Integer, unique=True, nullable=False)
+
+
+@app.route('/')
+def home():
+    return render_template("home.html")
+
+@app.route('/register' , methods = ['GET' , 'POST'])
+def register():
+    if(request.method=='POST'):
+        fullname = request.form.get('fullname')
+        email=request.form.get('email')
+        username=request.form.get('username')
+        password=request.form.get('password')
+        address=request.form.get('address')
+        phone=request.form.get('phone')
+        entry= User(fullname=fullname,email=email,user_name=username,password=password,phn=phone)
+        db.session.add(entry)
+        db.session.commit()
+    
+    return render_template("register.html")
+
+
+
+@app.route('/login' , methods = ['GET' , 'POST'])
+def login():
+    
+        logging.debug(f"Request method: {request.method}")
+        if request.method == 'POST':
+            username = request.form.get('username')
+            password = request.form.get('password')
+            logging.debug(f"Username: {username}, Password: {password}")
+
+            # Check if the username and password match a user in the database
+            user = User.query.filter_by(user_name=username, password=password).first()
+
+            if user:
+                # Successful login, redirect to the home page
+                return redirect(url_for('home'))
+            else:
+                # Invalid login, you may want to display an error message
+                return render_template("login.html", error="Invalid username or password")
+
+        return render_template("login.html")
+
+
+
+@app.route('/booking')
+def booking():
+    rows = list('ABCDEFGHIJ')
+    columns = range(1, 11)
+    return render_template("booking.html", rows=rows ,columns=columns)
+
+@app.route('/about')
+def about():
+    return render_template("about.html")
+
+@app.route('/main')
+def main():
+    return render_template("main.html")
+    
+@app.route('/test')
+def test():
+    return render_template("test.html")
+@app.route('/payment')
+def payment():
+    return render_template("payment.html")
+    
+if __name__ == '__main__':
+    app.run(debug=True)
